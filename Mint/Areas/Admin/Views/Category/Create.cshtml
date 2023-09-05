@@ -1,0 +1,75 @@
+﻿@model Category
+
+<style>
+    .modern-input {
+        border-radius: 5px;
+        background: linear-gradient(120deg, #f6f9fc, #eef1f5);
+        border: 1px solid #d3d9df;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11);
+        transition: all 0.3s ease;
+    }
+
+        .modern-input:focus {
+            outline: none;
+            box-shadow: 0 6px 10px rgba(50, 50, 93, 0.20), 0 2px 5px rgba(0, 0, 0, 0.15);
+            border-color: #a8b4c2;
+        }
+
+    .modern-btn {
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+        .modern-btn:hover {
+            transform: translateY(-3px);
+        }
+</style>
+
+<form method="post">
+    <div class="border p-5 mt-4">
+
+        <!-- Title Row -->
+        <div class="row mb-4">
+            <h2 class="text-primary">Category List</h2>
+            <hr class="w-100">
+        </div>
+
+        <!-- Row for Name -->
+        <div class="row mb-4">
+            <div class="col-md-5">
+                <label asp-for="Name">Category Name</label>
+                <input asp-for="Name" type="text" class="form-control modern-input">
+                <span asp-validation-for="Name" class="text-danger mt-2"></span>
+            </div>
+
+            <!-- Spacing Column -->
+            <div class="col-md-1"></div>
+
+            <!-- Column for DisplayOrder -->
+            <div class="col-md-5">
+                <label asp-for="DisplayOrder">Justice Order</label>
+                <input asp-for="DisplayOrder" type="text" class="form-control modern-input">
+                <span asp-validation-for="DisplayOrder" class="text-danger mt-2"></span>
+            </div>
+        </div>
+
+        <!-- Action Buttons Row -->
+        <div class="row mt-4">
+            <div class="col-md-6 mb-2">
+                <button type="submit" class="btn btn-dark form-control modern-btn">Create</button>
+            </div>
+            <div class="col-md-6">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-secondary form-control modern-btn" style="border: 1px solid #606060;">
+                    Back to List
+                </a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

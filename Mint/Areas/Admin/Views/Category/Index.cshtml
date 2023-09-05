@@ -1,0 +1,83 @@
+﻿@model List<Category>
+
+<style>
+    .modern-btn {
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+        .modern-btn:hover {
+            transform: translateY(-2px);
+        }
+
+    .modern-table {
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        border-bottom: 2px solid #d3d9df;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f6f9fc;
+    }
+
+    .btn-icon {
+        font-size: 1.25rem;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Category List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-dark modern-btn">
+                <i class="bi bi-plus-circle btn-icon"></i> Create New Category
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped modern-table">
+        <thead>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+
+                <th>
+                    Display Order
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Name</td>
+                    <td>
+                        @obj.DisplayOrder
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-dark mx-2 modern-btn">
+                                <i class="bi bi-pencil-square btn-icon"></i> Edit
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2 modern-btn">
+                                <i class="bi bi-trash btn-icon"></i> DELETE
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

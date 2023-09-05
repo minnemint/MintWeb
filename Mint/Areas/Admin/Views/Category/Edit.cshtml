@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+}
+
+@model Category
+
+<style>
+    .modern-input {
+        border-radius: 5px;
+        background: linear-gradient(120deg, #f6f9fc, #eef1f5);
+        border: 1px solid #d3d9df;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+        .modern-input:focus {
+            box-shadow: 0 6px 10px rgba(50, 50, 93, 0.20), 0 2px 5px rgba(0, 0, 0, 0.15);
+            border-color: #a8b4c2;
+        }
+
+    .modern-btn {
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+        .modern-btn:hover {
+            transform: translateY(-2px);
+        }
+</style>
+
+<form method="post">
+    <div class="border p-4 mt-5 shadow-lg rounded">
+        <div class="row pb-3">
+            <h2 class="text-primary">Edit Category</h2>
+            <hr />
+        </div>
+
+        <!-- Row containing both the Name and DisplayOrder -->
+        <div class="row mb-4">
+
+            <!-- Column for Name -->
+            <div class="col-md-5">
+                <label asp-for="Name" class="form-label">Category Name</label>
+                <input asp-for="Name" type="text" class="form-control modern-input" />
+                <span asp-validation-for="Name" class="text-danger mt-2"></span>
+            </div>
+
+            <!-- Column for a vertical line -->
+            <div class="col-md-1 d-flex align-items-center justify-content-center">
+                <div class="border-left border-dark" style="height: 100%;"></div>
+            </div>
+
+            <!-- Column for DisplayOrder -->
+            <div class="col-md-5">
+                <label asp-for="DisplayOrder" class="form-label">Display Order</label>
+                <input asp-for="DisplayOrder" type="text" class="form-control modern-input" />
+                <span asp-validation-for="DisplayOrder" class="text-danger mt-2"></span>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <button type="submit" class="btn btn-dark form-control modern-btn">Update</button>
+            </div>
+            <div class="col-6">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-secondary border form-control modern-btn">
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

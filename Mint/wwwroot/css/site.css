@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.stylish-input {
+    border-radius: 5px;
+    background: linear-gradient(120deg, #f6f9fc, #eef1f5);
+    border: 1px solid #d3d9df;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+    .stylish-input:focus {
+        outline: none;
+        border-color: #a8b4c2;
+        box-shadow: 0 6px 10px rgba(50, 50, 93, 0.20), 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
