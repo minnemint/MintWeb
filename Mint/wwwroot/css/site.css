@@ -34,3 +34,20 @@ body {
         border-color: #a8b4c2;
         box-shadow: 0 6px 10px rgba(50, 50, 93, 0.20), 0 2px 5px rgba(0, 0, 0, 0.15);
     }
+
+/* Align all text to center */
+#tblData th, #tblData td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+/* Improve button spacing */
+.btn-container .btn {
+    margin: 0 5px; /* Add spacing between buttons */
+}
+
+/* Ensure icons within buttons are centered */
+.btn i {
+    vertical-align: middle;
+    margin-right: 5px; /* Space between icon and text */
+}

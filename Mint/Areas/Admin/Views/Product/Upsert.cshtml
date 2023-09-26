@@ -1,0 +1,186 @@
+﻿@model ProductVM
+
+<style>
+    .modern-input {
+        border-radius: 5px;
+        background: linear-gradient(120deg, #f6f9fc, #eef1f5);
+        border: 1px solid #d3d9df;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11);
+        transition: all 0.3s ease;
+    }
+
+        .modern-input:focus {
+            outline: none;
+            box-shadow: 0 6px 10px rgba(50, 50, 93, 0.20), 0 2px 5px rgba(0, 0, 0, 0.15);
+            border-color: #a8b4c2;
+        }
+
+    .modern-btn {
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        border: 1px solid #606060;
+    }
+
+        .modern-btn:hover {
+            transform: translateY(-3px);
+        }
+
+    .product-img {
+        max-height: 500px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11);
+        overflow: hidden;
+    }
+</style>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="border p-4 mt-5 shadow-lg rounded">
+
+        <input asp-for="Product.Id" hidden />
+        <input asp-for="Product.ImageUrl" hidden />
+
+        <!-- Title Row -->
+        <div class="row mb-4">
+            <h2 class="text-primary">@(Model.Product.Id != 0 ? "Update" : "Create") Product</h2>
+            <hr class="w-100">
+        </div>
+
+        <div class="row">
+            <!-- Form Fields Column -->
+            <div class="col-md-6">
+
+                <!-- All your input fields -->
+                <!-- Begin of input fields -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.Title">Product Title</label>
+                        <input asp-for="Product.Title" type="text" class="form-control modern-input">
+                        <span asp-validation-for="Product.Title" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.Description">Description</label>
+                        <textarea asp-for="Product.Description" type="text" class="form-control modern-input"></textarea>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.ISBN">ISBN</label>
+                        <input asp-for="Product.ISBN" type="text" class="form-control modern-input">
+                        <span asp-validation-for="Product.ISBN" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.Author">Author</label>
+                        <input asp-for="Product.Author" type="text" class="form-control modern-input">
+                        <span asp-validation-for="Product.Author" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.ListPrice">ListPrice</label>
+                        <input asp-for="Product.ListPrice" type="text" class="form-control modern-input">
+                        <span asp-validation-for="Product.ListPrice" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.Price">Price</label>
+                        <input asp-for="Product.Price" type="text" class="form-control modern-input">
+                        <span asp-validation-for="Product.Price" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.Price50">Price50</label>
+                        <input asp-for="Product.Price50" type="text" class="form-control modern-input">
+                        <span asp-validation-for="Product.Price50" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.Price100">Price100</label>
+                        <input asp-for="Product.Price100" type="text" class="form-control modern-input">
+                        <span asp-validation-for="Product.Price100" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.CategoryId">Select Category</label>
+                        <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-select modern-input">
+                            @* asp-items="ViewBag.CategoryList" *@
+
+                            <option disabled selected>--Select Category--</option>
+                        </select>
+                        @* <input asp-for="CategoryId" type="text" class="form-control modern-input"> *@
+                        <span asp-validation-for="Product.CategoryId" class="text-danger mt-2"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <label asp-for="Product.ImageUrl">ImgUrl</label>
+                        <input type="file" name="file" class="form-control modern-input">
+                    </div>
+                </div>
+
+                <!-- Action Buttons Row -->
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-2">
+                        @if (Model.Product.Id != 0)
+                        {
+                            <button type="submit" class="btn btn-dark form-control modern-btn">Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-dark form-control modern-btn">Create</button>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-secondary form-control modern-btn">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+                <!-- End of input fields -->
+            </div>
+            <!-- Image Display Column -->
+            @if (Model.Product.Id != 0)
+            {
+                <div class="col-md-6">
+                    <!-- Append a path to the filename to make it web-accessible -->
+                    <img src="@Model.Product.ImageUrl" width="100%" />
+                </div>
+            }
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            // ... All your TinyMCE settings ...
+            plugins: 'anchor autolink charmap codesample emoticons link lists media table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | ',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}
